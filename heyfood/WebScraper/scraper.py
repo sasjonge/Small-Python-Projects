@@ -10,6 +10,8 @@ def get_todays_food():
     food_of_canteen = XPath("td[2]/text()")
     html = lxml.html.parse(url)
 
+    listOfCanteensToFood = []
+
     print len(table_rows(html))
     for row in table_rows(html):
         canteen = name_of_canteen(row)
@@ -20,8 +22,23 @@ def get_todays_food():
             food[i] =re.sub("\n ", " ", food[i])
             food[i] =re.sub(" \n", "", food[i])
             food[i] =re.sub("\n", " ", food[i])
-        print canteen + food
+        listOfCanteensToFood.append(canteen + food)
+        ++i
+    return listOfCanteensToFood
+
+def containsList(canteenToFood, meal):
+    print type(canteenToFood)
+    mealasregex = ".*" + meal + ".*"
+    for l in canteenToFood:
+        canteen = l[0]
+        for word in l:
+            if bool(re.search(mealasregex, word, 0)):
+                print word
+    return "Bio Biss"
 
 
-if __name__ == "__main__":
-    get_todays_food()
+def get_canteens(foodList):
+    canteenToFood = get_todays_food()
+    for meal in foodList:
+        containsList(canteenToFood, meal)
+    return []
