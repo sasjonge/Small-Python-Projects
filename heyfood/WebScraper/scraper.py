@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# coding: utf8
+
 import lxml.html
 import re
 from lxml.etree import XPath
@@ -12,7 +15,7 @@ def get_todays_food():
 
     listOfCanteensToFood = []
 
-    print len(table_rows(html))
+    #print len(table_rows(html))
     for row in table_rows(html):
         canteen = name_of_canteen(row)
         food_unfiltered = food_of_canteen(row)
@@ -27,18 +30,25 @@ def get_todays_food():
     return listOfCanteensToFood
 
 def containsList(canteenToFood, meal):
-    print type(canteenToFood)
+    #print type(canteenToFood)
     mealasregex = ".*" + meal + ".*"
+    answer = []
     for l in canteenToFood:
+        #print l
         canteen = l[0]
         for word in l:
-            if bool(re.search(mealasregex, word, 0)):
-                print word
-    return "Bio Biss"
+            #print word
+            if bool(re.search(mealasregex, word.encode('utf-8'), 0)):
+                answer.append(meal + " at " + canteen)
+    return answer
 
 
 def get_canteens(foodList):
     canteenToFood = get_todays_food()
+    answer = []
     for meal in foodList:
-        containsList(canteenToFood, meal)
-    return []
+        listy = containsList(canteenToFood, meal)
+        if len(listy) > 0:
+            for ele in listy:
+                answer.append(ele)
+    return answer
