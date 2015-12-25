@@ -50,5 +50,5 @@ def build_mail_text(answers):
         return answer_string
 
 
-if __name__ == "__main__":
+def runme():
     lookup_and_notify(foodList, emailList)
