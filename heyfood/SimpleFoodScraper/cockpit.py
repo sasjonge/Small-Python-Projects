@@ -24,17 +24,18 @@ def lookup_and_notify(fdlist, mlist):
     #build the answers
     listy = get_canteens(fdlist)
 
-    #build the answer string
-    answer_string = build_mail_text(listy)
+    if len(listy) > 0:
+        #build the answer string
+        answer_string = build_mail_text(listy)
 
-    #build the subject
-    now = datetime.datetime.now()
-    subjectcomplete = subject + " %d.%d.%d" % (now.day, now.month, now.year)
+        #build the subject
+        now = datetime.datetime.now()
+        subjectcomplete = subject + " %d.%d.%d" % (now.day, now.month, now.year)
 
-    print subjectcomplete
-
-    #send the mails
-    send_mail(my_email_adress, pwd, emailList, subjectcomplete, answer_string)
+        #send the mails
+        send_mail(my_email_adress, pwd, emailList, subjectcomplete, answer_string)
+    else:
+        print "Today i couldn't find your love"
 
 
 def build_mail_text(answers):
