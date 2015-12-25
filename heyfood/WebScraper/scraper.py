@@ -13,7 +13,7 @@ def get_todays_food():
     food_of_canteen = XPath("td[2]/text()")
     html = lxml.html.parse(url)
 
-    listOfCanteensToFood = []
+    list_of_canteens_to_food = []
 
     #print len(table_rows(html))
     for row in table_rows(html):
@@ -22,24 +22,24 @@ def get_todays_food():
         food = filter(lambda x: x != "\n", food_unfiltered)
         #filter all newline symbols
         for i in xrange(len(food)):
-            food[i] =re.sub("\n ", " ", food[i])
-            food[i] =re.sub(" \n", "", food[i])
-            food[i] =re.sub("\n", " ", food[i])
-        listOfCanteensToFood.append(canteen + food)
+            food[i] = re.sub("\n ", " ", food[i])
+            food[i] = re.sub(" \n", "", food[i])
+            food[i] = re.sub("\n", " ", food[i])
+        list_of_canteens_to_food.append(canteen + food)
         ++i
-    return listOfCanteensToFood
+    return list_of_canteens_to_food
 
-def containsList(canteenToFood, meal):
+def containsList(canteen_to_food, meal):
     #print type(canteenToFood)
     mealasregex = ".*" + meal + ".*"
     answer = []
-    for l in canteenToFood:
+    for l in canteen_to_food:
         #print l
         canteen = l[0]
         for word in l:
             #print word
             if bool(re.search(mealasregex, word.encode('utf-8'), 0)):
-                answer.append(meal + " at " + canteen)
+                answer.append(word + " at " + canteen)
     return answer
 
 
