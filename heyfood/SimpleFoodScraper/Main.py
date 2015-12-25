@@ -5,7 +5,7 @@ from WebScraper.scraper import get_canteens
 from MailClient.SendAMail import send_mail
 import datetime
 
-foodList = ["Biss", "Grüne Salate"]
+foodList = ["Grünkohl", "Gyrossuppe"]
 
 my_email_adress = "saschascripty@gmail.com"
 
