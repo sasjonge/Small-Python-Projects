@@ -14,7 +14,7 @@ my_email_adress = "saschascripty@gmail.com"
 pwd = ***REMOVED***
 
 #Put here the mails which should get notified
-emailList = ["iridia42@gmail.com", "rafacarmir@gmail.com"]
+emailList = ["iridia42@gmail.com", "rafacarmir@gmail.com", "chalseadagger@gmail.com"]
 
 #The subject of this mail
 subject = "Food-Notification"
