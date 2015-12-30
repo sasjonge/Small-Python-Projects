@@ -6,7 +6,7 @@ from MailClient.SendAMail import send_mail
 import datetime
 
 #Put here the food you want to be notified for
-foodList = ["Grünkohl", "Gyrossuppe"]
+foodList = ["Grünkohl", "Gyrossuppe", "Käse-Lauch-Suppe"]
 
 #The login to send the mail
 my_email_adress = "saschascripty@gmail.com"
@@ -14,7 +14,7 @@ my_email_adress = "saschascripty@gmail.com"
 pwd = ***REMOVED***
 
 #Put here the mails which should get notified
-emailList = ["iridia42@gmail.com"]
+emailList = ["iridia42@gmail.com", "rafacarmir@gmail.com"]
 
 #The subject of this mail
 subject = "Food-Notification"
