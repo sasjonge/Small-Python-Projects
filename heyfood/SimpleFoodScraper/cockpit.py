@@ -4,15 +4,21 @@
 from WebScraper.scraper import get_canteens
 from MailClient.SendAMail import send_mail
 import datetime
+import os
 
 #Put here the food you want to be notified for
 foodList = ["Pulled Pork","Lauch-Käsesuppe","Grünkohl", "Gyros-Suppe", "Käse-Lauch-Suppe", 
-		"Bacon-Griller", "Weihnachtsessen", "Apfelstrudel", "Ofenfrischer Hackbraten","Hühnersuppe"]
+		"Bacon-Griller", "Weihnachtsessen", "Apfelstrudel", "Ofenfrischer Hackbraten"]
+
+#Put in this dict additional food, that only you are interested in
+foodDict = {"chalseadagger@gmail.com":["Hühnersuppe"],
+            "iridia42@gmail.com":["Blumenkohlröschen im Backteig"],
+            "chalseadagger@gmail.com":["Blumenkohlröschen im Backteig"],}
 
 #The login to send the mail
 my_email_adress = "saschascripty@gmail.com"
 
-pwd = ***REMOVED***
+pwd = os.environ['MPWD']
 
 #Put here the mails which should get notified
 emailList = ["iridia42@gmail.com", "rafacarmir@gmail.com", "chalseadagger@gmail.com"]
@@ -21,22 +27,29 @@ emailList = ["iridia42@gmail.com", "rafacarmir@gmail.com", "chalseadagger@gmail.
 subject = "Food-Notification"
 
 
-def lookup_and_notify(fdlist, mlist):
-    #build the answers
-    listy = get_canteens(fdlist)
+def lookup_and_notify(fdlist, fddict, mlist):
+    for email in mlist:
+        #build the answers
+        listy = []
+        if email in fddict:
+            print list(set(fdlist).union(set(fddict[email])))
+            listy = get_canteens(list(set(fdlist).union(set(fddict[email]))))
+            #print str(listy)
+        else:
+            listy = get_canteens(fdlist)
 
-    if len(listy) > 0:
-        #build the answer string
-        answer_string = build_mail_text(listy)
+        if len(listy) > 0:
+            #build the answer string
+            answer_string_dict = build_mail_text(listy)
 
-        #build the subject
-        now = datetime.datetime.now()
-        subjectcomplete = subject + " %d.%d.%d" % (now.day, now.month, now.year)
+            #build the subject
+            now = datetime.datetime.now()
+            subjectcomplete = subject + " %d.%d.%d" % (now.day, now.month, now.year)
 
-        #send the mails
-        send_mail(my_email_adress, pwd, emailList, subjectcomplete, answer_string)
-    else:
-        print "Today i couldn't find your love"
+            #send the mails
+            send_mail(my_email_adress, pwd, email, subjectcomplete, answer_string_dict)
+        else:
+            print "Today i couldn't find your love"
 
 
 def build_mail_text(answers):
@@ -57,4 +70,4 @@ def build_mail_text(answers):
 
 
 def runme():
-    lookup_and_notify(foodList, emailList)
+    lookup_and_notify(foodList, foodDict, emailList)
