@@ -13,7 +13,8 @@ foodList = ["Pulled Pork","Lauch-Käsesuppe","Grünkohl", "Gyros-Suppe", "Käse-
 #Put in this dict additional food, that only you are interested in
 foodDict = {"chalseadagger@gmail.com":["Hühnersuppe"],
             "iridia42@gmail.com":["Blumenkohlröschen im Backteig"],
-            "chalseadagger@gmail.com":["Blumenkohlröschen im Backteig"]}
+            "chalseadagger@gmail.com":["Blumenkohlröschen im Backteig"],
+            "rafacarmir@gmail.com":["Grünkerntopf"]}
 
 #The login to send the mail
 my_email_adress = "saschascripty@gmail.com"
