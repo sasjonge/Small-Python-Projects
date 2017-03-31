@@ -8,12 +8,11 @@ import os
 
 #Put here the food you want to be notified for
 foodList = ["Pulled Pork","Lauch-Käsesuppe","Grünkohl", "Gyros-Suppe", "Käse-Lauch-Suppe", 
-		"Bacon-Griller", "Weihnachtsessen", "Apfelstrudel", "Ofenfrischer Hackbraten"]
+		"Bacon-Griller", "Weihnachtsessen", "Apfelstrudel", "Ofenfrischer Hackbraten","Grünkerntopf"]
 
 #Put in this dict additional food, that only you are interested in
 foodDict = {"iridia42@gmail.com":["Blumenkohlröschen im Backteig"],
-            "chalseadagger@gmail.com":["Blumenkohlröschen im Backteig", "Hühnersuppe"],
-            "rafacarmir@gmail.com":["Grünkerntopf"]}
+            "chalseadagger@gmail.com":["Blumenkohlröschen im Backteig", "Hühnersuppe"]}
 
 #The login to send the mail
 my_email_adress = "saschascripty@gmail.com"
