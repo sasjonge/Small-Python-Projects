@@ -11,9 +11,8 @@ foodList = ["Pulled Pork","Lauch-Käsesuppe","Grünkohl", "Gyros-Suppe", "Käse-
 		"Bacon-Griller", "Weihnachtsessen", "Apfelstrudel", "Ofenfrischer Hackbraten"]
 
 #Put in this dict additional food, that only you are interested in
-foodDict = {"chalseadagger@gmail.com":["Hühnersuppe"],
-            "iridia42@gmail.com":["Blumenkohlröschen im Backteig"],
-            "chalseadagger@gmail.com":["Blumenkohlröschen im Backteig"],
+foodDict = {"iridia42@gmail.com":["Blumenkohlröschen im Backteig"],
+            "chalseadagger@gmail.com":["Blumenkohlröschen im Backteig", "Hühnersuppe"],
             "rafacarmir@gmail.com":["Grünkerntopf"]}
 
 #The login to send the mail
