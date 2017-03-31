@@ -33,6 +33,7 @@ def containsList(canteen_to_food, meal):
     #print type(canteenToFood)
     mealasregex = ".*" + meal + ".*"
     answer = []
+    canteen_set = set()
     for l in canteen_to_food:
         #print l
         canteen = l[0]
@@ -40,15 +41,19 @@ def containsList(canteen_to_food, meal):
             #print word
             if bool(re.search(mealasregex, word.encode('utf-8'), 0)):
                 answer.append(word + " at " + canteen)
-    return answer
+                canteen_set.add(canteen)
+    return (answer,list(canteen_set))
 
 
 def get_canteens(foodList):
     canteenToFood = get_todays_food()
     answer = []
+    canteen_set = set()
     for meal in foodList:
-        listy = containsList(canteenToFood, meal)
+        (listy,canteen) = containsList(canteenToFood, meal)
         if len(listy) > 0:
+            for cant in canteen:
+                canteen_set.add(cant)
             for ele in listy:
                 answer.append(ele)
-    return answer
+    return (answer,list(canteen_set))
