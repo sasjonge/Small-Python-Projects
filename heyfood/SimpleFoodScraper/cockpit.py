@@ -20,13 +20,18 @@ my_email_adress = "saschascripty@gmail.com"
 pwd = os.environ['MPWD']
 
 #Put here the mails which should get notified
+nameList = ["Sascha", "Rafa", "Luke"]
 emailList = ["iridia42@gmail.com", "rafacarmir@gmail.com", "chalseadagger@gmail.com"]
 
 def lookup_and_notify(fdlist, fddict, mlist):
-    for email in mlist:
+    
+    for i in range(len(mlist)):
         #build the answers
         listy = []
         canteens = []
+	email = mlist[i]
+	name = nameList[i]
+	
         if email in fddict:
             (listy,canteens) = get_canteens(list(set(fdlist).union(set(fddict[email]))))
         else:
@@ -34,7 +39,7 @@ def lookup_and_notify(fdlist, fddict, mlist):
 
         if len(listy) > 0:
             #build the answer string
-            answer_string_dict = build_mail_text(listy)
+            answer_string_dict = build_mail_text(listy, name)
 
             #build the subject
             now = datetime.datetime.now()
@@ -47,8 +52,8 @@ def lookup_and_notify(fdlist, fddict, mlist):
             print "Today i couldn't find your love"
 
 
-def build_mail_text(answers):
-    answer_string = "Hey,\n\ntoday you will get "
+def build_mail_text(answers, name):
+    answer_string = "Hey " + name + ",\n\ntoday we have at least one of your favorites!\n\n"
     if len(answers) > 0:
         if len(answers) == 1:
             answer_string = answer_string + answers[0]
@@ -56,11 +61,10 @@ def build_mail_text(answers):
             for i in xrange(len(answers)):
                 if i == 0:
                     answer_string = answer_string + answers[i]
-                elif i < len(answers) - 1:
-                    answer_string = answer_string + ", " + answers[i]
-                else:
-                    answer_string = answer_string + " and " + answers[i] + "."
-        answer_string = answer_string + "\n\nGreets, Glados"
+                elif i < len(answers):
+                    answer_string = answer_string + "\n" + answers[i]
+		
+        answer_string = answer_string + "\n\nBest, GLaDOS"
         return answer_string
 
 
