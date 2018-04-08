@@ -7,7 +7,7 @@ from lxml.etree import XPath
 
 
 def get_todays_food():
-    url = "http://www.uni-bremen.de/service/taeglicher-bedarf/essen-auf-dem-campus.html"
+    url = "https://www.uni-bremen.de/universitaet/campus/essen.html"
     table_rows = XPath('//div[@class="tx-hbucafeteria-pi1"]/table/tbody/tr')
     name_of_canteen = XPath("td[1]/strong/a/text()")
     food_of_canteen = XPath("td[2]/text()")
