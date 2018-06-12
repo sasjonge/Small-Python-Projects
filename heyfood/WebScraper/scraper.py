@@ -3,23 +3,29 @@
 
 import lxml.html
 import re
+import urllib2
 from lxml.etree import XPath
+from StringIO import StringIO
 
 
 def get_todays_food():
-    url = "https://www.uni-bremen.de/universitaet/campus/essen.html"
-    table_rows = XPath('//div[@class="tx-hbucafeteria-pi1"]/table/tbody/tr')
+    file = urllib2.urlopen('https://www.uni-bremen.de/de/universitaet/campus/essen/speisepläne.html')
+    data = file.read()
+    file.close()
+    table_rows = XPath('//div[@class="tx-hbucafeteria-pi1-list"]/table/tbody/tr')
     name_of_canteen = XPath("td[1]/strong/a/text()")
     food_of_canteen = XPath("td[2]/text()")
-    html = lxml.html.parse(url)
-
+    html = lxml.html.document_fromstring(data)
     list_of_canteens_to_food = []
 
-    #print len(table_rows(html))
+    #print len(table_rows(html)
     for row in table_rows(html):
+        print(str(name_of_canteen(row)))
         canteen = name_of_canteen(row)
+        print(str(food_of_canteen(row)))
         food_unfiltered = food_of_canteen(row)
         food = filter(lambda x: x != "\n", food_unfiltered)
+        print(str(food))
         #filter all newline symbols
         for i in xrange(len(food)):
             food[i] = re.sub("\n ", " ", food[i])
@@ -27,6 +33,8 @@ def get_todays_food():
             food[i] = re.sub("\n", " ", food[i])
         list_of_canteens_to_food.append(canteen + food)
         ++i
+
+    print(str(list_of_canteens_to_food))
     return list_of_canteens_to_food
 
 def containsList(canteen_to_food, meal):

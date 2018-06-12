@@ -8,10 +8,10 @@ import os
 
 #Put here the food you want to be notified for
 foodList = ["Pulled Pork","Lauch-Käsesuppe","Grünkohl", "Gyros-Suppe", "Käse-Lauch-Suppe", 
-		"Bacon-Griller", "Weihnachtsessen", "Apfelstrudel", "Ofenfrischer Hackbraten","Grünkerntopf"]
+		"Bacon-Griller", "Weihnachtsessen", "Apfelstrudel", "Ofenfrischer Hackbraten","Grünkerntopf","Möhreneintopf"]
 
 #Put in this dict additional food, that only you are interested in
-foodDict = {"iridia42@gmail.com":["Blumenkohlröschen im Backteig"],
+foodDict = {"iridia42@gmail.com":["Blumenkohlröschen im Backteig","Bärlauchcreme"],
             "chalseadagger@gmail.com":["Blumenkohlröschen im Backteig", "Hühnersuppe","Pilzsauce"],
             "rafacarmir@gmail.com":["Irish Stew"]}
 
