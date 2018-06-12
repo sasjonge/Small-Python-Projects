@@ -24,15 +24,14 @@ pwd = os.environ['MPWD']
 nameList = ["Sascha", "Rafa", "Luke"]
 emailList = ["iridia42@gmail.com", "rafacarmir@gmail.com", "chalseadagger@gmail.com"]
 
-def lookup_and_notify(fdlist, fddict, mlist):
-    
+def lookup_and_notify(fdlist, fddict, mlist):    
     for i in range(len(mlist)):
         #build the answers
         listy = []
         canteens = []
-	email = mlist[i]
-	name = nameList[i]
-	
+        email = mlist[i]
+        name = nameList[i]
+
         if email in fddict:
             (listy,canteens) = get_canteens(list(set(fdlist).union(set(fddict[email]))))
         else:

@@ -6,7 +6,9 @@ import re
 import urllib2
 from lxml.etree import XPath
 from StringIO import StringIO
+from difflib import SequenceMatcher
 
+canteenToFood = []
 
 def get_todays_food():
     file = urllib2.urlopen('https://www.uni-bremen.de/de/universitaet/campus/essen/speisepläne.html')
@@ -47,14 +49,16 @@ def containsList(canteen_to_food, meal):
         canteen = l[0]
         for word in l:
             #print word
-            if bool(re.search(mealasregex, word.encode('utf-8'), 0)):
+            if bool(re.search(mealasregex, word.encode('utf-8'), 0)) or SequenceMatcher(None, str(word.encode('utf-8')), str(meal)).ratio() > 0.9:
                 answer.append(word + " at " + canteen)
                 canteen_set.add(canteen)
     return (answer,list(canteen_set))
 
 
 def get_canteens(foodList):
-    canteenToFood = get_todays_food()
+    global canteenToFood
+    if not canteenToFood:
+        canteenToFood = get_todays_food()
     answer = []
     canteen_set = set()
     for meal in foodList:
