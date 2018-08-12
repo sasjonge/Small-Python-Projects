@@ -11,7 +11,7 @@ from difflib import SequenceMatcher
 canteenToFood = []
 
 def get_todays_food():
-    file = urllib2.urlopen('https://www.uni-bremen.de/de/universitaet/campus/essen/speisepläne.html')
+    file = urllib2.urlopen('https://www.uni-bremen.de/de/universit%C3%A4t/campus/essen.html')
     data = file.read()
     file.close()
     table_rows = XPath('//div[@class="tx-hbucafeteria-pi1-list"]/table/tbody/tr')
